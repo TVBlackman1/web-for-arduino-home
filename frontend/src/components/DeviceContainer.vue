@@ -30,13 +30,13 @@
 
 <style scoped>
     .device-container {
-        width: 800px;
+        width: fit-content;
         /*border: 1px solid black;*/
         margin: auto;
 
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        grid-column-gap: 1em;
-        grid-row-gap: 0.4em;
+        grid-column-gap: 2em;
+        grid-row-gap: 1.2em;
     }
 </style>
