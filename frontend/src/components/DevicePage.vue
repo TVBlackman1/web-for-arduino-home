@@ -1,0 +1,53 @@
+<template>
+    <div class="device-page">
+        <h1>
+            {{ title }}
+        </h1>
+<!--        <p>{{ description }}</p>-->
+        <p v-if="!reqIsReady">Ожидание сервера..</p>
+        <device-page-picker :device="device"/>
+    </div>
+</template>
+
+<script>
+    import serverHandler from "../mixins/serverHandler";
+    import DevicePagePicker from "./DevicePagePicker";
+
+    export default {
+        name: "DevicePage",
+        data() {
+            return {
+                title: "None",
+                description: "None",
+                device: {}
+            }
+        },
+        async created() {
+            // POST request using fetch with async/await
+            const data = await this.serverRequest("/api/device/" + this.$route.params.id)
+            // console.log(data)
+            this.title = data.name
+            this.description = data.description
+            this.device = data
+        },
+        components: {
+            DevicePagePicker
+        },
+        mixins: [serverHandler],
+    }
+
+
+</script>
+
+<style scoped>
+    .device-page {
+        width: 800px;
+        margin: auto;
+        padding: 1.4em;
+        box-sizing: border-box;
+        border-style: solid;
+        border-width: 0 1.5em;
+        border-color: #40b883;
+        border-radius: 10px;
+    }
+</style>
