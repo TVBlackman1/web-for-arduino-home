@@ -6,9 +6,23 @@
 </template>
 
 <script>
+    import imageGreenHouse from "../assets/green-house.jpg";
+
     export default {
         name: "GreenhouseM",
         props: { device: Object },
+        data() {
+            return {
+                imgSrc: imageGreenHouse
+            }
+        },
+        mounted() {
+            // console.log(this.imgSrc)
+            // this.imgSrc = "edited"
+            this.setDeviceImageSrc(this.imgSrc)
+            // console.log(this.imgSrc)
+        },
+        inject: ['setDeviceImageSrc']
     }
 </script>
 

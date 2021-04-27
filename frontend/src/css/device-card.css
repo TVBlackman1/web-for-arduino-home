@@ -1,0 +1,82 @@
+header {
+  font-weight: 700;
+  font-size: 1.3em;
+  cursor: pointer;
+}
+
+.card-device {
+  overflow: hidden;
+  position: relative;
+  background-color: #fff;
+  width: 480px;
+  height: 280px;
+  box-sizing: border-box;
+
+  border-style: solid;
+  border-color: #40b883;
+  border-radius: 2px;
+  border: 0;
+  /*border-width: 8px 1px 3px 1px;*/
+
+  -webkit-box-shadow: 2px 2px 6px 1px rgba(0,0,0,0.45);
+  box-shadow: 2px 2px 6px 1px rgba(0,0,0,0.45);
+
+  transition: 0.24s;
+}
+
+.card-device-image-holder {
+  overflow: hidden;
+  height: 140px;
+  width: 100%;
+}
+
+.card-device-picture {
+  width: 100%;
+  max-height: 140px;
+  background-position: center;
+  background-size: cover;
+  background-origin: content-box;
+  background-repeat: repeat;
+  object-fit: cover;
+  object-position: 50% 50%;
+
+  transition: 0.24s;
+}
+
+.card-device:hover {
+  background-color: #f3f6ff;
+  cursor: pointer;
+}
+
+.card-device:hover .card-device-picture {
+  transform: scale(1.1);
+}
+
+.card-content {
+  padding: 0.4em;
+}
+
+.card-device-pop-button {
+  position: absolute;
+  width: 100%;
+  bottom: -28px;
+  font-size: 22px;
+  padding: 0.1em;
+  text-align: center;
+  background-color: #7692ff;
+  text-decoration-line: none;
+  color: white;
+  transition: 0.24s;
+}
+
+.card-device-pop-button p {
+  padding: 0;
+  margin: 0;
+  text-decoration-line: none;
+  text-decoration-width: 0;
+  color: white;
+}
+
+.card-device:hover .card-device-pop-button {
+  bottom: 0;
+}

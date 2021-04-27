@@ -6,12 +6,14 @@
 </template>
 
 <script>
-export default {
+  import imageWeatherStation from "../assets/weather-station.jpg"
+
+  export default {
   name: "WeatherStationM",
   props: {device: Object},
   data() {
     return {
-      imgSrc: "../../images/device-pictures/weather-station.jpg"
+      imgSrc: imageWeatherStation
     }
   },
   mounted() {
@@ -20,7 +22,7 @@ export default {
     this.setDeviceImageSrc(this.imgSrc)
     // console.log(this.imgSrc)
   },
-  inject: ['setDeviceImageSrc']
+    inject: ['setDeviceImageSrc']
 }
 </script>
 
