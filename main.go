@@ -19,6 +19,10 @@ type Device struct {
 	Additional  interface{} `json:"additional"`
 }
 
+type GlassesInfo struct {
+	EnableStatus bool `json:"enable_statis"`
+}
+
 type WeatherInfo struct {
 	Temperature int `json:"temperature"`
 	AirPressure int `json:"air_pressure"`
@@ -87,9 +91,12 @@ func main() {
 	})
 
 	devices = append(devices, Device{
-		ID: "2",
-		Name: "Smart-glasses",
+		ID: "glasses",
+		Name: "Умные очки",
 		Status: "OK",
+		Additional: GlassesInfo {
+			EnableStatus: true,
+		},
 	})
 
 	devices = append(devices, Device{

@@ -6,6 +6,7 @@
     </div>
     <div class="card-content">
       <header>{{ device.name }}</header>
+      <hr />
 <!--      <router-link :to="getLink()">Перейти</router-link>-->
       <device-picker :device="device"/>
     </div>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1.00187,0,0,1.00187,12,12)">
+        <g id="mic_black_24dp" transform="matrix(1,0,0,1,-12,-12)">
+            <clipPath id="_clip1">
+                <rect x="0" y="0" width="24" height="24"/>
+            </clipPath>
+            <g clip-path="url(#_clip1)">
+                <g>
+                    <g transform="matrix(0.824035,0,0,0.824035,2.11158,2.0236)">
+                        <path d="M12,14C13.66,14 15,12.66 15,11L15,5C15,3.34 13.66,2 12,2C10.34,2 9,3.34 9,5L9,11C9,12.66 10.34,14 12,14Z" style="fill:rgb(171,118,255);fill-rule:nonzero;"/>
+                        <g transform="matrix(1.21354,0,0,1.21354,-2.56249,-2.45572)">
+                            <path d="M9.528,6.561L9.528,6.144C9.528,4.776 10.632,3.672 12,3.672C13.368,3.672 14.472,4.776 14.472,6.144L14.472,11.088C14.472,11.096 14.472,11.103 14.472,11.111L14.444,11.14L9.528,6.561Z" style="fill:rgb(118,146,255);fill-rule:nonzero;"/>
+                        </g>
+                        <path d="M17,11C17,13.76 14.76,16 12,16C9.24,16 7,13.76 7,11L5,11C5,14.53 7.61,17.43 11,17.92L11,21L13,21L13,17.92C16.39,17.43 19,14.53 19,11L17,11Z" style="fill:rgb(118,146,255);fill-rule:nonzero;"/>
+                    </g>
+                    <g transform="matrix(1.49905,0,0,1.24255,-3.13143,-5.82118)">
+                        <path d="M10.094,4.685C14.512,4.685 18.099,9.012 18.099,14.342C18.099,19.673 14.512,24 10.094,24C5.676,24 2.089,19.673 2.089,14.342C2.089,9.012 5.676,4.685 10.094,4.685ZM10.094,5.94C13.938,5.94 17.058,9.705 17.058,14.342C17.058,18.98 13.938,22.745 10.094,22.745C6.25,22.745 3.13,18.98 3.13,14.342C3.13,9.705 6.25,5.94 10.094,5.94Z" style="fill:rgb(72,109,255);"/>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
