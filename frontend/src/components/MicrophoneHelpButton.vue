@@ -1,28 +1,26 @@
 <template>
-<!--  <div class="ghost-bottom-panel">-->
   <div class="micro-image bottom-fixed" :style="styleObject" />
-<!--  </div>-->
 </template>
 
 <script>
-import MicroSVG from "../assets/svg/micro-24.svg"
-import MicroSVGEnabled from "../assets/svg/micro-enabled-24.svg"
+import MicrophoneHelpSVG from "../assets/svg/micro-help-24.svg";
+import MicrophoneHelpSVGEnabled from "../assets/svg/micro-help-enabled-24.svg";
 
 export default {
-  name: "MicrophoneButton",
+  name: "MicrophoneHelpButton",
   data() {
     return {
-      MicroSVG,
-      MicroSVGEnabled,
+      MicrophoneHelpSVG,
+      MicrophoneHelpSVGEnabled
     }
   },
   computed: {
     styleObject() {
       return {
-        '--width': '66px',
-        '--height': '66px',
-        '--background-image': `url(${this.MicroSVG})`,
-        '--background-image-hover': `url(${this.MicroSVGEnabled})`
+        '--width': '44px',
+        '--height': '44px',
+        '--background-image': `url(${this.MicrophoneHelpSVG})`,
+        '--background-image-hover': `url(${this.MicrophoneHelpSVGEnabled})`
       }
     }
   }
@@ -30,13 +28,13 @@ export default {
 </script>
 
 <style scoped>
+
 .micro-image {
   background-image: var(--background-image);
   /*var(--background-image-hover);*/
   width: var(--width);
   height: var(--height);
   background-size: cover;
-  margin: 0 0.6em;
 }
 .micro-image:hover {
   cursor: pointer;
