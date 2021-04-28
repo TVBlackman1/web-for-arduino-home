@@ -129,6 +129,8 @@ func main() {
 	r.HandleFunc("/api/device/{id}", getDevice).Methods("POST", "OPTIONS")
 	r.HandleFunc("/api/devices", getDevices).Methods("POST", "OPTIONS")
 
+	//r.HandleFunc("/api/")
+
 
 
 	log.Fatal(http.ListenAndServe(":8000", r))
