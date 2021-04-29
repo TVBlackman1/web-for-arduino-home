@@ -1,5 +1,5 @@
 <template>
-  <div class="card-device">
+  <div class="card-device" @click="onClick">
     <div class="card-device-image-holder">
       <div v-if="imgSrc==null">None</div>
       <img v-else :src="imgSrc" class="card-device-picture">
@@ -18,6 +18,7 @@
 
 <script>
 import DevicePicker from "./Picker/DevicePicker";
+import popMenuOpener from "../../transfers/popMenuOpener";
 
 export default {
   name: "Device",
@@ -32,9 +33,10 @@ export default {
       setDeviceImageSrc: this.setDeviceImageSrc
     }
   },
-  mounted() {
-    // console.log("Created device:", this.device)
-  },
+  // mounted() {
+  //   // console.log("Created device:", this.device)
+  //   popMenuOpener.$emit('some-event')
+  // },
   components: {
     DevicePicker
   },
@@ -45,6 +47,10 @@ export default {
 
     setDeviceImageSrc(imageSrc) {
       this.imgSrc = imageSrc
+    },
+    onClick() {
+      popMenuOpener.$emit('toggle-pop-menu')
+      // console.log("!")
     }
   }
 }

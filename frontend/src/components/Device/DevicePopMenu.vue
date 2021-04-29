@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import popMenuOpener from "../../transfers/popMenuOpener";
+
 export default {
   name: "DevicePopMenu",
   data() {
@@ -14,9 +16,15 @@ export default {
       show: true
     }
   },
+  mounted() {
+    popMenuOpener.$on('toggle-pop-menu', this.toggle)
+  },
   methods: {
     close() {
       this.show = false;
+    },
+    toggle() {
+      this.show = !this.show
     },
     popMenuClick(event) {
       event.stopPropagation()

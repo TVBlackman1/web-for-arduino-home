@@ -6,9 +6,9 @@
 </template>
 
 <script>
-  import imageWeatherStation from "../../../../assets/weather-station.jpg"
+import imageWeatherStation from "../../../../assets/weather-station.jpg"
 
-  export default {
+export default {
   name: "WeatherStationM",
   props: {device: Object},
   data() {
@@ -22,7 +22,7 @@
     this.setDeviceImageSrc(this.imgSrc)
     // console.log(this.imgSrc)
   },
-    inject: ['setDeviceImageSrc']
+  inject: ['setDeviceImageSrc']
 }
 </script>
 
