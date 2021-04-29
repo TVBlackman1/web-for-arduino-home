@@ -4,19 +4,22 @@
     <!--  <img alt="Vue logo" src="./assets/logo.png">-->
     <router-view/>
   <microphone-section />
+  <device-pop-menu />
 </template>
 
 <script>
 // import MicrophoneButton from "./components/MicrophoneButton";
-import MicrophoneSection from "./components/MicrophoneSection";
+import MicrophoneSection from "./components/MicrophoneSection/MicrophoneSection";
 import SiteHeader from "./components/SiteHeader";
+import DevicePopMenu from "./components/Device/DevicePopMenu";
 
     export default {
         name: 'App',
         components: {
           // MicrophoneButton,
           SiteHeader,
-          MicrophoneSection
+          MicrophoneSection,
+          DevicePopMenu
         }
     }
 </script>

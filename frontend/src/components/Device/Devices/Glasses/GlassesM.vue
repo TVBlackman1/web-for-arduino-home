@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import imageGlasses from "../assets/glasses.jpg"
+import imageGlasses from "../../../../assets/glasses.jpg"
 
 export default {
   name: "GlassesM",

@@ -10,8 +10,8 @@
 </template>
 
 <script>
-    import serverHandler from "../mixins/serverHandler";
-    import DevicePagePicker from "./DevicePagePicker";
+    import serverHandler from "../../mixins/serverHandler";
+    import DevicePagePicker from "./Picker/DevicePagePicker";
 
     export default {
         name: "DevicePage",

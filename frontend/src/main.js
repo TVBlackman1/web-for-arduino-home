@@ -2,8 +2,8 @@ import { createApp } from 'vue'
 import {createRouter, createWebHistory} from "vue-router";
 import App from './App.vue'
 
-import Devices from './components/Devices'
-import DevicePage from './components/DevicePage'
+import Devices from './components/Device/Devices'
+import DevicePage from './components/Device/DevicePage'
 
 
 const routes = [

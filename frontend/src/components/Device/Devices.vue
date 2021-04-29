@@ -4,7 +4,7 @@
 </template>
 
 <script>
-    import DeviceContainer from '../components/DeviceContainer.vue'
+    import DeviceContainer from './DeviceContainer.vue'
 
     export default {
         name: "Devices",

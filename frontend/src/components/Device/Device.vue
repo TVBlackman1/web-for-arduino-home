@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import DevicePicker from "./DevicePicker";
+import DevicePicker from "./Picker/DevicePicker";
 
 export default {
   name: "Device",
@@ -51,7 +51,7 @@ export default {
 </script>
 
 <style scoped>
-  @import "../css/device-card.css";
+  @import "../../css/device-card.css";
 /*header {*/
 /*  font-weight: 700;*/
 /*  font-size: 1.3em;*/

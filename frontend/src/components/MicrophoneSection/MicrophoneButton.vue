@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import MicroSVG from "../assets/svg/micro-24.svg"
-import MicroSVGEnabled from "../assets/svg/micro-enabled-24.svg"
-import voiceHandler from "../mixins/voiceHandler";
+import MicroSVG from "../../assets/svg/micro-24.svg"
+import MicroSVGEnabled from "../../assets/svg/micro-enabled-24.svg"
+import voiceHandler from "../../mixins/voiceHandler";
 
 export default {
   name: "MicrophoneButton",

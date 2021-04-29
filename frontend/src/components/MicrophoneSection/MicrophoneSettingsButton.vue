@@ -3,8 +3,8 @@
 </template>
 
 <script>
-import MicrophoneSettingsSVG from "../assets/svg/micro-settings-24.svg";
-import MicrophoneSettingsSVGEnabled from "../assets/svg/micro-settings-enabled-24.svg";
+import MicrophoneSettingsSVG from "../../assets/svg/micro-settings-24.svg";
+import MicrophoneSettingsSVGEnabled from "../../assets/svg/micro-settings-enabled-24.svg";
 
 export default {
   name: "MicrophoneButton",

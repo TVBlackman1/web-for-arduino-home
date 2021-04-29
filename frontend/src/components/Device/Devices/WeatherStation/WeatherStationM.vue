@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import imageWeatherStation from "../assets/weather-station.jpg"
+  import imageWeatherStation from "../../../../assets/weather-station.jpg"
 
   export default {
   name: "WeatherStationM",

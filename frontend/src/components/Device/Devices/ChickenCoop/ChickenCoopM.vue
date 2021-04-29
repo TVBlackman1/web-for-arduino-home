@@ -3,7 +3,7 @@
 </template>
 
 <script>
-    import imageChickenCoop from "../assets/chicken-coop.jpg"
+    import imageChickenCoop from "../../../../assets/chicken-coop.jpg"
 
     export default {
         name: "ChickenCoopM",

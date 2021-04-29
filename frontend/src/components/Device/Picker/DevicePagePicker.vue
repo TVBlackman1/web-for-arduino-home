@@ -5,9 +5,9 @@
 </template>
 
 <script>
-    import WeatherStationPage from "./WeatherStationPage";
-    import ChickenCoopPage from "./ChickenCoopPage";
-    import GreenhousePage from "./GreenhousePage";
+    import WeatherStationPage from "../Devices/WeatherStation/WeatherStationPage";
+    import ChickenCoopPage from "../Devices/ChickenCoop/ChickenCoopPage";
+    import GreenhousePage from "../Devices/Greenhouse/GreenhousePage";
 
     export default {
         name: "DevicePagePicker",

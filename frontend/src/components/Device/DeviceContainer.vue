@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import Device from '../components/Device.vue'
-import serverHandler from "../mixins/serverHandler";
-import DeviceEmptyCard from "../components/DeviceEmptyCard";
+import Device from './Device.vue'
+import serverHandler from "../../mixins/serverHandler";
+import DeviceEmptyCard from "./DeviceEmptyCard";
 
 export default {
   name: "DeviceContainer",

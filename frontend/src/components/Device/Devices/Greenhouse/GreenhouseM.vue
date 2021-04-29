@@ -6,7 +6,7 @@
 </template>
 
 <script>
-    import imageGreenHouse from "../assets/green-house.jpg";
+    import imageGreenHouse from "../../../../assets/green-house.jpg";
 
     export default {
         name: "GreenhouseM",

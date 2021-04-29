@@ -8,10 +8,10 @@
 </template>
 
 <script>
-import ChickenCoopM from "./ChickenCoopM";
-import WeatherStationM from "./WeatherStationM";
-import GreenhouseM from "./GreenhouseM";
-import GlassesM from "./GlassesM";
+import ChickenCoopM from "../Devices/ChickenCoop/ChickenCoopM";
+import WeatherStationM from "../Devices/WeatherStation/WeatherStationM";
+import GreenhouseM from "../Devices/Greenhouse/GreenhouseM";
+import GlassesM from "../Devices/Glasses/GlassesM";
 
 export default {
   name: "DevicePicker",

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import imageAdd from "../assets/add2.png"
+import imageAdd from "../../assets/add2.png"
 
 export default {
   name: "DeviceEmptyCard",
@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style scoped>
-@import "../css/device-card.css";
+@import "../../css/device-card.css";
 
 .card-device {
   /*add features*/
