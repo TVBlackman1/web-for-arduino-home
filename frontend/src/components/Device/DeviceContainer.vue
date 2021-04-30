@@ -10,7 +10,7 @@
 
 <script>
 import Device from './Device.vue'
-import serverHandler from "../../mixins/serverHandler";
+import serverDefaultRequests from "../../mixins/serverDefaultRequests";
 import DeviceEmptyCard from "./DeviceEmptyCard";
 
 export default {
@@ -21,14 +21,13 @@ export default {
     }
   },
   async created() {
-    // POST request using fetch with async/await
-    this.devices = await this.serverRequest("/api/devices")
+    this.devices = await this.getDevices()
   },
   components: {
     Device,
     DeviceEmptyCard
   },
-  mixins: [serverHandler],
+  mixins: [serverDefaultRequests],
 }
 </script>
 

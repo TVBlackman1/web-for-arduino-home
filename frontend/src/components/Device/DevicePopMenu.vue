@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div v-if="show" class="dark-background" @click="close">
-      <div class="pop-menu" @click="popMenuClick"></div>
+      <div class="pop-menu" @click="popMenuClick">Подробная информация об этом устройстве экосистемы {{content}}</div>
     </div>
   </transition>
 </template>
@@ -13,11 +13,13 @@ export default {
   name: "DevicePopMenu",
   data() {
     return {
-      show: true
+      show: false,
+      content: {}
     }
   },
   mounted() {
     popMenuOpener.$on('toggle-pop-menu', this.toggle)
+    popMenuOpener.$on('set-content-pop-menu', this.setContent)
   },
   methods: {
     close() {
@@ -28,6 +30,10 @@ export default {
     },
     popMenuClick(event) {
       event.stopPropagation()
+    },
+    setContent(content) {
+      this.content = content
+      console.log(this.content)
     }
   }
 }

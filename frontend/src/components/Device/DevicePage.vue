@@ -10,7 +10,7 @@
 </template>
 
 <script>
-    import serverHandler from "../../mixins/serverHandler";
+    import serverDefaultRequests from "../../mixins/serverDefaultRequests";
     import DevicePagePicker from "./Picker/DevicePagePicker";
 
     export default {
@@ -23,9 +23,7 @@
             }
         },
         async created() {
-            // POST request using fetch with async/await
-            const data = await this.serverRequest("/api/device/" + this.$route.params.id)
-            // console.log(data)
+            const data = await this.getDeviceById(this.$route.params.id)
             this.title = data.name
             this.description = data.description
             this.device = data
@@ -33,7 +31,7 @@
         components: {
             DevicePagePicker
         },
-        mixins: [serverHandler],
+        mixins: [serverDefaultRequests],
     }
 
 

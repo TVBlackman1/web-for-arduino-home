@@ -11,7 +11,7 @@
       <device-picker :device="device"/>
     </div>
     <div class="card-device-pop-button">
-      <router-link :to="getLink()"><p>Перейти</p></router-link>
+      <router-link :to="getLink()" @click="e=>e.stopPropagation()"><p>Перейти</p></router-link>
     </div>
   </div>
 </template>
@@ -49,8 +49,11 @@ export default {
       this.imgSrc = imageSrc
     },
     onClick() {
+      this.openPopMenu()
+    },
+    openPopMenu() {
+      popMenuOpener.$emit('set-content-pop-menu', this.device)
       popMenuOpener.$emit('toggle-pop-menu')
-      // console.log("!")
     }
   }
 }

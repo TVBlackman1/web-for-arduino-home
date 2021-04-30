@@ -10,6 +10,7 @@
 import MicroSVG from "../../assets/svg/micro-24.svg"
 import MicroSVGEnabled from "../../assets/svg/micro-enabled-24.svg"
 import voiceHandler from "../../mixins/voiceHandler";
+import voiceCommands from "../../voiceCommands";
 
 export default {
   name: "MicrophoneButton",
@@ -37,7 +38,8 @@ export default {
     this.initVoiceHandle(this.onEndListening)
   },
   methods: {
-    onEndListening() {
+    async onEndListening(speechOutput) {
+      await this.do(speechOutput.toLowerCase())
       this.isListening = false
     },
     startListening(e) {
@@ -45,7 +47,7 @@ export default {
       this.listenStart(e)
     }
   },
-  mixins: [voiceHandler]
+  mixins: [voiceHandler, voiceCommands]
 }
 </script>
 
