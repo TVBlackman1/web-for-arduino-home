@@ -18,7 +18,8 @@
 
 <script>
 import DevicePicker from "./Picker/DevicePicker";
-import popMenuOpener from "../../transfers/popMenuOpener";
+// import popMenuOpener from "../../transfers/popMenuOpener";
+import popMenuHandler from "../../mixins/popMenuHandler";
 
 export default {
   name: "Device",
@@ -52,10 +53,11 @@ export default {
       this.openPopMenu()
     },
     openPopMenu() {
-      popMenuOpener.$emit('set-content-pop-menu', this.device)
-      popMenuOpener.$emit('toggle-pop-menu')
+      this.__setContent(this.device)
+      this.__toggle()
     }
-  }
+  },
+  mixins: [popMenuHandler]
 }
 </script>
 

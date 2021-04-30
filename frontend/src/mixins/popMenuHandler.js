@@ -1,33 +1,12 @@
-import DevicePopMenu from "../components/Device/DevicePopMenu";
+import popMenuOpener from "../transfers/popMenuOpener";
 
 export default {
-    data() {
-        return {
-            ip: "localhost:8000",
-            reqIsReady: false
-        }
-    },
     methods: {
-        getServerAddress() {
-            return "http://" + this.ip
+        __setContent(content) {
+            popMenuOpener.$emit('set-content-pop-menu', content)
         },
-        async serverRequest(apiAddress) {
-            const address = this.getServerAddress() + apiAddress
-            const requestOptions = {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                // body: JSON.stringify({id: this.$route.params.id})
-            };
-
-            const response = await fetch(address, requestOptions);
-            const data =  await response.json();
-            this.reqIsReady = true
-            return data
+        __toggle() {
+            popMenuOpener.$emit('toggle-pop-menu')
         }
-    },
-    components: {
-        DevicePopMenu
     }
 }

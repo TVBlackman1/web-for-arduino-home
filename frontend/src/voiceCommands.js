@@ -1,5 +1,5 @@
-import popMenuOpener from "./transfers/popMenuOpener";
 import serverDefaultRequests from "./mixins/serverDefaultRequests";
+import popMenuHandler from "./mixins/popMenuHandler";
 
 export default {
     data() {
@@ -8,18 +8,25 @@ export default {
         }
     },
     methods: {
+        async openDevicePoMenu(textCommand) {
+            let deviceName = ""
+
+            if(textCommand === "метеостанции" || textCommand === "метеостанция") {
+                deviceName = "weather-station"
+            } else if (textCommand === "курятник") {
+                deviceName = "chicken-coop"
+            }
+
+            if(deviceName === "")
+                return
+
+            let device = await this.getDeviceById("weather-station")
+            this.__setContent(device)
+            this.__toggle()
+        },
         async do(textCommand) {
-            if(textCommand === "устройство метеостанции" || textCommand === "устройство метеостанция") {
-                let device = await this.serverRequest("/api/device/weather-station")
-                popMenuOpener.$emit('set-content-pop-menu', device)
-                popMenuOpener.$emit('toggle-pop-menu')
-            }
-            if(textCommand === "устройство курятник") {
-                let device = await this.serverRequest("/api/device/chicken-coop")
-                popMenuOpener.$emit('set-content-pop-menu', device)
-                popMenuOpener.$emit('toggle-pop-menu')
-            }
+            await this.openDevicePoMenu(textCommand)
         }
     },
-    mixins: [serverDefaultRequests]
+    mixins: [serverDefaultRequests, popMenuHandler]
 }
