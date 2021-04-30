@@ -1,13 +1,17 @@
 <template>
   <transition name="fade">
     <div v-if="show" class="dark-background" @click="close">
-      <div class="pop-menu" @click="popMenuClick">Подробная информация об этом устройстве экосистемы {{content}}</div>
+      <div class="pop-menu" @click="popMenuClick">
+<!--        Подробная информация об этом устройстве экосистемы {{content}}-->
+        <device-page-picker :device="content"/>
+      </div>
     </div>
   </transition>
 </template>
 
 <script>
-import popMenuOpener from "../../transfers/popMenuOpener";
+import popMenuOpener from "../../emitters/popMenuOpener";
+import DevicePagePicker from "./Picker/DevicePagePicker";
 
 export default {
   name: "DevicePopMenu",
@@ -35,6 +39,9 @@ export default {
       this.content = content
       console.log(this.content)
     }
+  },
+  components: {
+    DevicePagePicker
   }
 }
 </script>
@@ -63,6 +70,8 @@ export default {
   border-radius: 8px;
   -webkit-box-shadow: 2px 2px 6px 1px rgba(0,0,0,0.45);
   box-shadow: 2px 2px 10px 1px rgba(0,0,0,0.45);
+  padding: 2em 0.4em;
+  overflow-y: auto;
   /*position: absolute;*/
   /*z-index: 11;*/
 }

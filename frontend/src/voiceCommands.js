@@ -9,18 +9,18 @@ export default {
     },
     methods: {
         async openDevicePoMenu(textCommand) {
-            let deviceName = ""
+            let deviceId = ""
 
             if(textCommand === "метеостанции" || textCommand === "метеостанция") {
-                deviceName = "weather-station"
+                deviceId = "weather-station"
             } else if (textCommand === "курятник") {
-                deviceName = "chicken-coop"
+                deviceId = "chicken-coop"
             }
 
-            if(deviceName === "")
+            if(deviceId === "")
                 return
 
-            let device = await this.getDeviceById("weather-station")
+            let device = await this.getDeviceById(deviceId)
             this.__setContent(device)
             this.__toggle()
         },

@@ -18,7 +18,7 @@
 
 <script>
 import DevicePicker from "./Picker/DevicePicker";
-// import popMenuOpener from "../../transfers/popMenuOpener";
+// import popMenuOpener from "../../emitters/popMenuOpener";
 import popMenuHandler from "../../mixins/popMenuHandler";
 
 export default {

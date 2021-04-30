@@ -1,4 +1,4 @@
-import popMenuOpener from "../transfers/popMenuOpener";
+import popMenuOpener from "../emitters/popMenuOpener";
 
 export default {
     methods: {
