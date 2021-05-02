@@ -57,6 +57,50 @@ func register(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func login(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Headers", "*")
+
+	//r.Body = http.MaxBytesReader(w, r.Body, 1048576)
+	dec := json.NewDecoder(r.Body)
+	dec.DisallowUnknownFields()
+
+
+	var user dbDefaultEssence.User
+	_ = dec.Decode(&user)
+
+	var res FrontendResponse.RegisterResponse
+
+	userInDB, err := DBRequests.GetUserByLogin(user.Login)
+	if err != nil {
+		// user is not exists
+		res = FrontendResponse.RegisterResponse{
+			Res: "Error",
+			Message: "Аккаунт не существует",
+		}
+		json.NewEncoder(w).Encode(&res)
+		return
+	}
+
+	if userInDB.Password != user.Password {
+		res = FrontendResponse.RegisterResponse{
+			Res: "Error",
+			Message: "Неверный пароль",
+		}
+		json.NewEncoder(w).Encode(&res)
+		return
+	}
+
+	res = FrontendResponse.RegisterResponse{
+		Res: "OK",
+		Message: "Вы успешно вошли в аккаунт!",
+	}
+
+	json.NewEncoder(w).Encode(&res)
+
+}
+
 func getDevice(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
@@ -113,6 +157,7 @@ func main() {
 	r.HandleFunc("/api/devices", getDevices).Methods("POST", "OPTIONS")
 
 	r.HandleFunc("/api/register", register).Methods("POST", "OPTIONS")
+	r.HandleFunc("/api/login", login).Methods("POST", "OPTIONS")
 
 	log.Fatal(http.ListenAndServe(":8920", r))
 }

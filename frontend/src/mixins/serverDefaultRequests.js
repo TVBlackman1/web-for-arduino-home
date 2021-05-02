@@ -10,6 +10,9 @@ export default {
         },
         async register(account =  {login: "", password: ""}) {
             return await this.serverRequest("/api/register", account)
+        },
+        async login(account =  {login: "", password: ""}) {
+            return await this.serverRequest("/api/login", account)
         }
     },
     mixins: [serverHandler]

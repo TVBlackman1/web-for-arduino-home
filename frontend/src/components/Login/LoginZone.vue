@@ -1,34 +1,74 @@
 <template>
-  <div class="center">
+  {{isLog1}}
+  <div v-if="!isLog1" class="center">
     <p>-- ЛОГИН --</p>
-    <input type="text" placeholder="логин" v-model="account.login">
-    <input type="password" placeholder="пароль" v-model="account.password">
-    <button @click="login">Войти</button>
+    <input type="text" placeholder="логин" v-model="accountInLogin.login">
+    <input type="password" placeholder="пароль" v-model="accountInLogin.password">
+    <button @click="loginAccount">Войти</button>
+
+    <p>-- РЕГИСТРАЦИЯ --</p>
+    <input type="text" placeholder="логин" v-model="accountInReg.login">
+    <input type="password" placeholder="пароль" v-model="accountInReg.password">
+    <button @click="registerAccount">Зарегистрироваться</button>
+  </div>
+  <div v-else>
+    Вы в аккаунте аууу
+
+    <button @click="logout">Выйти</button>
   </div>
 </template>
 
 <script>
 import serverDefaultRequests from "../../mixins/serverDefaultRequests";
+import localStorageHandler from "../../mixins/localStorageHandler";
 
 export default {
   name: "LoginZone",
   data() {
     return {
-      account: {
+      isLog1: false,
+      accountInLogin: {
+        login: "",
+        password: ""
+      },
+      accountInReg: {
         login: "",
         password: ""
       }
     }
   },
+  // computed() {
+  //   return {
+  //     isLog1: this.isLog()
+  //   }
+  // },
+  created() {
+    this.isLog1 = this.isLog()
+
+  },
   methods: {
-    async login() {
-      console.log(this.account)
-      const res = await this.register(this.account)
+    async registerAccount() {
+      const res = await this.register(this.accountInReg)
 
       console.log(res)
+    },
+    async loginAccount() {
+      const res = await this.login(this.accountInLogin)
+      if (res.res === "OK") {
+        this.setLog(true)
+      }
+      console.log(this.isLog())
+      this.isLog1 = this.isLog()
+
+      console.log(res)
+    },
+    logout() {
+      console.log("!!")
+      this.setLog(false)
+      this.isLog1 = false
     }
   },
-  mixins: [serverDefaultRequests]
+  mixins: [serverDefaultRequests, localStorageHandler]
 }
 </script>
 
@@ -38,7 +78,7 @@ export default {
   -webkit-box-shadow: 2px 2px 6px 1px rgba(0,0,0,0.45);
     box-shadow: 2px 2px 6px 1px rgba(0,0,0,0.45);
   width: 600px;
-  height: 400px;
+  height: 520px;
   background-color: #8998d7;
   padding: 2em;
   box-sizing: border-box;
@@ -61,7 +101,7 @@ export default {
 .center p {
   font-size: 24px;
   color: #f5f5f5;
-  margin: 0.2em 0.8em 0.8em;
+  margin: 0.4em 0.8em 0.8em;
 }
 
 .center button {
@@ -74,7 +114,7 @@ export default {
   transition: .24s;
   color: #597189;
   display: block;
-  margin: auto;
+  margin: auto auto 1.4em auto;
 }
 
 .center button:hover {
