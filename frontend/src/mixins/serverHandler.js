@@ -9,14 +9,14 @@ export default {
         getServerAddress() {
             return "http://" + this.ip
         },
-        async serverRequest(apiAddress) {
+        async serverRequest(apiAddress, body = {}) {
             const address = this.getServerAddress() + apiAddress
             const requestOptions = {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                // body: JSON.stringify({id: this.$route.params.id})
+                body: JSON.stringify(body)
             };
 
             const response = await fetch(address, requestOptions);

@@ -1,9 +1,9 @@
 <template>
   <header>
     <ul>
-      <li>Моя дача</li>
-      <li>Новости</li>
-      <li>Мой аккаунт</li>
+      <li><router-link :to="'/'" @click="e=>e.stopPropagation()"><p>Моя дача</p></router-link></li>
+      <li><router-link :to="'/news'" @click="e=>e.stopPropagation()"><p>Новости</p></router-link></li>
+      <li><router-link :to="'/register'" @click="e=>e.stopPropagation()"><p>Мой аккаунт</p></router-link></li>
     </ul>
   </header>
 </template>

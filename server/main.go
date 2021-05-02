@@ -5,6 +5,7 @@ import (
 	DBRequests "./DBDefaultRequests"
 	Devices "./Devices"
 	StandartDevices "./Devices/StandartDevices"
+	FrontendResponse "./FrontendResponse"
 	"encoding/json"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
@@ -14,6 +15,47 @@ import (
 	"os"
 )
 
+func faviconHandler(w http.ResponseWriter, r *http.Request){
+	http.ServeFile(w, r, "./favicon/favicon.ico")
+}
+
+func register(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Headers", "*")
+
+	//r.Body = http.MaxBytesReader(w, r.Body, 1048576)
+	dec := json.NewDecoder(r.Body)
+	dec.DisallowUnknownFields()
+
+
+	var user dbDefaultEssence.User
+	_ = dec.Decode(&user)
+
+	var res FrontendResponse.RegisterResponse
+
+	_, err := DBRequests.GetUserByLogin(user.Login)
+	if err == nil {
+		// user is already exists
+		res = FrontendResponse.RegisterResponse{
+			Res: "Error",
+			Message: "Аккаунт уже существует",
+		}
+		json.NewEncoder(w).Encode(&res)
+		return
+
+	}
+
+	err = DBRequests.CreateUser(&user)
+
+	res = FrontendResponse.RegisterResponse{
+		Res: "OK",
+		Message: "Аккаунт успешно создан!",
+	}
+
+	json.NewEncoder(w).Encode(&res)
+
+}
 
 func getDevice(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
@@ -52,37 +94,15 @@ func forGuest(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
-	fmt.Println("Go MySQL Tutorial")
 	StandartDevices.CreateDeviceList()
-	//db, err := sql.Open("mysql", "username:password@tcp(127.0.0.1:3306)/test")
-	//db, err := sql.Open("mysql", "root:root@tcp(127.0.0.1:3306)/ArduinoSmartHome")
-	// jdbc:mysql://localhost:3306/ArduinoSmartHome
-	//if err != nil {
-	//	panic(err.Error())
-	//}
 
 	DBRequests.Connect()
-	_, _ = DBRequests.GetUserByLogin("tvblackman2")
-	//if err != nil {
-	//	panic(err.Error())
-	//}
-	_ = DBRequests.CreateUser(&dbDefaultEssence.User{
-		ID: -1,
-		Login: "tvblackman2",
-		Password: "qwerty",
-	})
-
-	//if err != nil {
-	//	panic(err.Error())
-	//}
-
-	// defer the close till after the main function has finished
-	// executing
 	defer DBRequests.Db.Close()
 
-	fmt.Println("!!")
 
 	r := mux.NewRouter()
+
+	r.HandleFunc("/favicon.ico", faviconHandler)
 
 	r.HandleFunc("/guest", forGuest).Methods("GET")
 
@@ -92,9 +112,7 @@ func main() {
 	r.HandleFunc("/api/device/{id}", getDevice).Methods("POST", "OPTIONS")
 	r.HandleFunc("/api/devices", getDevices).Methods("POST", "OPTIONS")
 
-	//r.HandleFunc("/api/")
-
-
+	r.HandleFunc("/api/register", register).Methods("POST", "OPTIONS")
 
 	log.Fatal(http.ListenAndServe(":8920", r))
 }
