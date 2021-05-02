@@ -1,7 +1,8 @@
 package main
 
 import (
-	"database/sql"
+	dbDefaultEssence "./DBDefaultEssence"
+	DBRequests "./DBDefaultRequests"
 	"encoding/json"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
@@ -10,13 +11,6 @@ import (
 	"net/http"
 	"os"
 )
-
-type User struct {
-	ID       int8   `json:"id"`
-	Login    string `json:"login"`
-	Password string `json:"password"`
-}
-
 
 
 type Device struct {
@@ -87,14 +81,31 @@ func forGuest(w http.ResponseWriter, r *http.Request) {
 func main() {
 
 	fmt.Println("Go MySQL Tutorial")
-	db, err := sql.Open("mysql", "username:password@tcp(127.0.0.1:3306)/test")
-	if err != nil {
-		panic(err.Error())
-	}
+	//db, err := sql.Open("mysql", "username:password@tcp(127.0.0.1:3306)/test")
+	//db, err := sql.Open("mysql", "root:root@tcp(127.0.0.1:3306)/ArduinoSmartHome")
+	// jdbc:mysql://localhost:3306/ArduinoSmartHome
+	//if err != nil {
+	//	panic(err.Error())
+	//}
+
+	DBRequests.Connect()
+	_, _ = DBRequests.GetUserByLogin("tvblackman2")
+	//if err != nil {
+	//	panic(err.Error())
+	//}
+	_ = DBRequests.CreateUser(&dbDefaultEssence.User{
+		ID: -1,
+		Login: "tvblackman2",
+		Password: "qwerty",
+	})
+
+	//if err != nil {
+	//	panic(err.Error())
+	//}
 
 	// defer the close till after the main function has finished
 	// executing
-	defer db.Close()
+	defer DBRequests.Db.Close()
 
 	fmt.Println("!!")
 
@@ -154,7 +165,7 @@ func main() {
 
 
 
-	log.Fatal(http.ListenAndServe(":8000", r))
+	log.Fatal(http.ListenAndServe(":8920", r))
 }
 
 //метеостанция влажность воздуха, давление, температура
