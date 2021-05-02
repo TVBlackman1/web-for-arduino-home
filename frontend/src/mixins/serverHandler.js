@@ -1,7 +1,7 @@
 export default {
     data() {
         return {
-            ip: "localhost:8000",
+            ip: "localhost:8920",
             reqIsReady: false
         }
     },
