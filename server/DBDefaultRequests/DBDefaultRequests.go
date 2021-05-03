@@ -28,7 +28,7 @@ func CreateUser(user *dbDefaultEssence.User) error {
 	}
 
 	query := fmt.Sprintf("INSERT INTO Users (Login, Password) VALUES ('%s', '%s')", user.Login, user.Password)
-	fmt.Println(query)
+	//fmt.Println(query)
 	rows, err := Db.Query(query)
 	if err != nil {
 		return err
@@ -41,7 +41,7 @@ func CreateUser(user *dbDefaultEssence.User) error {
 func GetUserByLogin(login string) (*dbDefaultEssence.User, error) {
 	//user
 	query := fmt.Sprintf("select Login, Password from Users where Login = '%s'", login)
-	fmt.Println(query)
+	//fmt.Println(query)
 
 
 	results, err := Db.Query(query)

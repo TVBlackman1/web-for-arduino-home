@@ -1,5 +1,4 @@
 <template>
-  {{isLog1}}
   <div v-if="!isLog1" class="center">
     <p>-- ЛОГИН --</p>
     <input type="text" placeholder="логин" v-model="accountInLogin.login">
@@ -12,7 +11,7 @@
     <button @click="registerAccount">Зарегистрироваться</button>
   </div>
   <div v-else>
-    Вы в аккаунте аууу
+    Вы вошли в аккаунт под логином <b>{{getLastLogin()}}</b>
 
     <button @click="logout">Выйти</button>
   </div>
@@ -37,14 +36,8 @@ export default {
       }
     }
   },
-  // computed() {
-  //   return {
-  //     isLog1: this.isLog()
-  //   }
-  // },
   created() {
     this.isLog1 = this.isLog()
-
   },
   methods: {
     async registerAccount() {
@@ -53,20 +46,20 @@ export default {
       console.log(res)
     },
     async loginAccount() {
-      const res = await this.login(this.accountInLogin)
+      let login = this.accountInLogin
+      const res = await this.login(login)
       if (res.res === "OK") {
         this.setLog(true)
       }
-      console.log(this.isLog())
       this.isLog1 = this.isLog()
+      this.setLastLogin(login.login)
 
       console.log(res)
     },
     logout() {
-      console.log("!!")
       this.setLog(false)
-      this.isLog1 = false
-    }
+      this.isLog1 = this.isLog()
+    },
   },
   mixins: [serverDefaultRequests, localStorageHandler]
 }
