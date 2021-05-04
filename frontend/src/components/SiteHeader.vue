@@ -3,14 +3,33 @@
     <ul>
       <li><router-link :to="'/'" @click="e=>e.stopPropagation()"><p>Моя дача</p></router-link></li>
       <li><router-link :to="'/news'" @click="e=>e.stopPropagation()"><p>Новости</p></router-link></li>
-      <li><router-link :to="'/register'" @click="e=>e.stopPropagation()"><p>Мой аккаунт</p></router-link></li>
+      <li><router-link :to="'/register'" @click="e=>e.stopPropagation()"><p>{{accountLinkText}}</p></router-link></li>
     </ul>
   </header>
 </template>
 
 <script>
+import mainEmitter from "../emitters/mainEmitter";
+
 export default {
-  name: "SiteHeader"
+  name: "SiteHeader",
+  data() {
+    return {
+      accountLinkText: "Войти"
+    }
+  },
+  created() {
+    mainEmitter.$on('login', this.setAccountLinkLogin)
+    mainEmitter.$on('logout', this.setAccountLinkLogout)
+  },
+  methods: {
+    setAccountLinkLogin(login) {
+      this.accountLinkText = login
+    },
+    setAccountLinkLogout() {
+      this.accountLinkText = "Войти"
+    }
+  }
 }
 </script>
 

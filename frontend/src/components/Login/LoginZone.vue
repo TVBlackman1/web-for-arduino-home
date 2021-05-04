@@ -19,7 +19,7 @@
 
 <script>
 import serverDefaultRequests from "../../mixins/serverDefaultRequests";
-import localStorageHandler from "../../mixins/localStorageHandler";
+import loginHandler from "../../mixins/loginHandler";
 
 export default {
   name: "LoginZone",
@@ -49,19 +49,18 @@ export default {
       let login = this.accountInLogin
       const res = await this.login(login)
       if (res.res === "OK") {
-        this.setLog(true)
+        this.loginInFrontend(login.login)
       }
       this.isLog1 = this.isLog()
-      this.setLastLogin(login.login)
 
       console.log(res)
     },
     logout() {
-      this.setLog(false)
-      this.isLog1 = this.isLog()
+      this.logoutInFrontend()
+      this.isLog1 = this.isLogInFrontend()
     },
   },
-  mixins: [serverDefaultRequests, localStorageHandler]
+  mixins: [serverDefaultRequests, loginHandler]
 }
 </script>
 

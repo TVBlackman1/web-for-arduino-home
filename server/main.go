@@ -1,14 +1,13 @@
 package main
 
 import (
-	dbDefaultEssence "./DBDefaultEssence"
-	DBRequests "./DBDefaultRequests"
-	Devices "./Devices"
-	StandartDevices "./Devices/StandartDevices"
-	FrontendResponse "./FrontendResponse"
+	dbDefaultEssence "arduino-server/server/DBDefaultEssence"
+	DBRequests "arduino-server/server/DBDefaultRequests"
+	Devices "arduino-server/server/Devices"
+	StandartDevices "arduino-server/server/Devices/StandartDevices"
+	FrontendResponse "arduino-server/server/FrontendResponse"
 	"encoding/json"
 	"fmt"
-	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"

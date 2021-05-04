@@ -1,12 +1,12 @@
-import popMenuOpener from "../emitters/popMenuOpener";
+import mainEmitter from "../emitters/mainEmitter";
 
 export default {
     methods: {
         __setContent(content) {
-            popMenuOpener.$emit('set-content-pop-menu', content)
+            mainEmitter.$emit('set-content-pop-menu', content)
         },
         __toggle() {
-            popMenuOpener.$emit('toggle-pop-menu')
+            mainEmitter.$emit('toggle-pop-menu')
         }
     }
 }

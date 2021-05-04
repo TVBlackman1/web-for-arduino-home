@@ -1,7 +1,7 @@
 package StandartDevices
 
 import (
-	Devices "../../Devices"
+	Devices "arduino-server/server/Devices"
 )
 
 var DeviceList []Devices.Device

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import popMenuOpener from "../../emitters/popMenuOpener";
+import mainEmitter from "../../emitters/mainEmitter";
 import DevicePagePicker from "./Picker/DevicePagePicker";
 
 export default {
@@ -22,8 +22,8 @@ export default {
     }
   },
   mounted() {
-    popMenuOpener.$on('toggle-pop-menu', this.toggle)
-    popMenuOpener.$on('set-content-pop-menu', this.setContent)
+      mainEmitter.$on('toggle-pop-menu', this.toggle)
+      mainEmitter.$on('set-content-pop-menu', this.setContent)
   },
   methods: {
     close() {

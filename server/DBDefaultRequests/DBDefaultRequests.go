@@ -1,7 +1,7 @@
 package DBDefaultRequests
 
 import (
-	dbDefaultEssence "../DBDefaultEssence"
+	dbDefaultEssence "arduino-server/server/DBDefaultEssence"
 	"database/sql"
 	"errors"
 	"fmt"
@@ -13,7 +13,7 @@ var Db *sql.DB
 var err error
 
 func Connect() {
-	Db, err = sql.Open("mysql", "root:root@tcp(127.0.0.1:3306)/ArduinoSmartHome")
+	Db, err = sql.Open("mysql", "root:120474ba@tcp(127.0.0.1:3306)/ArduinoSmartHome")
 	if err != nil {
 		panic(err.Error())
 	}
