@@ -14,7 +14,10 @@ export default {
         },
         isLogInFrontend() {
             return this.isLog()
-        }
+        },
+        getLastLoginInFrontend() {
+            return this.getLastLogin()
+        },
     },
     mixins: [localStorageHandler]
 }

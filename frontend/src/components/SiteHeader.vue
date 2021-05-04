@@ -10,6 +10,7 @@
 
 <script>
 import mainEmitter from "../emitters/mainEmitter";
+import loginHandler from "../mixins/loginHandler";
 
 export default {
   name: "SiteHeader",
@@ -19,6 +20,9 @@ export default {
     }
   },
   created() {
+    if(this.isLogInFrontend()) {
+      this.setAccountLinkLogin(this.getLastLoginInFrontend())
+    }
     mainEmitter.$on('login', this.setAccountLinkLogin)
     mainEmitter.$on('logout', this.setAccountLinkLogout)
   },
@@ -29,7 +33,8 @@ export default {
     setAccountLinkLogout() {
       this.accountLinkText = "Войти"
     }
-  }
+  },
+  mixins: [loginHandler]
 }
 </script>
 
