@@ -5,6 +5,7 @@ import App from './App.vue'
 import Devices from './components/Device/Devices'
 import DevicePage from './components/Device/DevicePage'
 import LoginZone from "./components/Login/LoginZone";
+import Profile from "./components/Login/Profile";
 
 
 const routes = [
@@ -24,9 +25,9 @@ const routes = [
         component: LoginZone
     },
     {
-        path: "/me",
-        name: "me",
-        component: Devices
+        path: "/profile",
+        name: "profile",
+        component: Profile
     },
     {
         path: "/news",

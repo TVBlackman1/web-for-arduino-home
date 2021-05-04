@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!isLog1" class="center">
+  <div class="center">
     <p>-- ЛОГИН --</p>
     <input type="text" placeholder="логин" v-model="accountInLogin.login">
     <input type="password" placeholder="пароль" v-model="accountInLogin.password">
@@ -9,11 +9,6 @@
     <input type="text" placeholder="логин" v-model="accountInReg.login">
     <input type="password" placeholder="пароль" v-model="accountInReg.password">
     <button @click="registerAccount">Зарегистрироваться</button>
-  </div>
-  <div v-else>
-    Вы вошли в аккаунт под логином <b>{{getLastLogin()}}</b>
-
-    <button @click="logout">Выйти</button>
   </div>
 </template>
 
@@ -38,6 +33,8 @@ export default {
   },
   created() {
     this.isLog1 = this.isLog()
+    if(this.isLog1)
+      this.redirectToProfile()
   },
   methods: {
     async registerAccount() {
@@ -50,15 +47,18 @@ export default {
       const res = await this.login(login)
       if (res.res === "OK") {
         this.loginInFrontend(login.login)
+        this.redirectToProfile()
       }
       this.isLog1 = this.isLog()
-
       console.log(res)
     },
     logout() {
       this.logoutInFrontend()
       this.isLog1 = this.isLogInFrontend()
     },
+    redirectToProfile() {
+      this.$router.push('profile')
+    }
   },
   mixins: [serverDefaultRequests, loginHandler]
 }
