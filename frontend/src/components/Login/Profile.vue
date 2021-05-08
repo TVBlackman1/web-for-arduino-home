@@ -1,5 +1,6 @@
 <template v-if="login===login">
     <div>{{login}}</div>
+    Я в камере :)
     <button @click="logout">Выйти</button>
 
 </template>

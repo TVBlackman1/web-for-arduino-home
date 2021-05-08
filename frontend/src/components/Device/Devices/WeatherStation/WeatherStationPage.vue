@@ -3,8 +3,8 @@
 <!--    <p>Давление: {{ device.additional.air_pressure }}мм рт ст</p>-->
     <div class="content">
         <p>Текущая температура воздуха:</p>
-        <div class="temperature">
-            {{ device.additional.temperature }}°C
+        <div :class="'temperature ' + classNames" :style="styles">
+            {{ deviceData.additional.temperature }}°C
         </div>
 
         <div class="more">
@@ -20,21 +20,9 @@
             </p>
         </div>
 
-        <p>Давление:</p>
-        <div class="temperature">
-            {{ device.additional.air_pressure }}мм рт ст
-        </div>
-
-        <div class="more">
-            <header>Подробности:</header>
-            <p>
-                Я лично без понятия какое давление рекомендовано
-            </p>
-        </div>
-
         <p>Влажность:</p>
         <div class="temperature">
-            {{ device.additional.air_humidity }}%
+            {{ deviceData.additional.air_humidity }}%
         </div>
 
         <div class="more">
@@ -53,16 +41,53 @@
     export default {
         name: "WeatherStationPage",
         props: { device: Object },
+        data() {
+            return {
+                deviceData: this.device,
+                styles: {
+                        "--colorDang": "red",
+                        "--color": "black",
+
+                },
+                classNames: ""
+            }
+        },
+        created() {
+            setTimeout(() => {
+                this.deviceData.additional.temperature = 12
+            },  3000)
+            setTimeout(() => {
+                this.deviceData.additional.air_pressure = 768
+            },  3000)
+            setTimeout(() => {
+                this.deviceData.additional.temperature = 8
+                if(this.deviceData.additional.temperature < 10) {
+                    this.classNames = "dang"
+                }
+            },  6000)
+            setTimeout(() => {
+                this.deviceData.additional.air_pressure = 771
+            },  6000)
+        }
     }
 </script>
 
 <style scoped>
+    body {
+
+    }
     .content {
         text-align: justify;
+        font-size: 1.2em;
     }
 
     .temperature {
         font-size: 3.2em;
+        transition: 0.24s;
+    }
+
+    .dang {
+        color: var(--colorDang);
     }
 
     .more {

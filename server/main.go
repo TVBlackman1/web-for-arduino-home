@@ -9,9 +9,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
+	"github.com/jacobsa/go-serial/serial"
 	"log"
 	"net/http"
 	"os"
+	"time"
 )
 
 func faviconHandler(w http.ResponseWriter, r *http.Request){
@@ -135,6 +137,121 @@ func forGuest(w http.ResponseWriter, r *http.Request) {
 
 }
 
+type Test struct {
+	K string `json:"k"`
+	Hum string `json:"hum"`
+}
+
+type ToGlasses struct {
+	Device string `json:"device"`
+}
+
+var testElement = Test {
+	K: "0",
+	Hum: "0",
+}
+
+func test(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Headers", "*")
+
+	params := mux.Vars(r)
+	testElement = Test {
+	K: params["k"],
+	Hum: params["hum"],
+	}
+
+	//dec := json.NewDecoder(r.Body)
+	//dec.DisallowUnknownFields()
+	//
+	//_ = dec.Decode(&testElement)
+
+	log.Printf(testElement.K)
+	log.Printf(testElement.Hum)
+}
+
+func toGlasses(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Headers", "*")
+
+	var _toGlasses ToGlasses
+
+	dec := json.NewDecoder(r.Body)
+	dec.DisallowUnknownFields()
+
+	_ = dec.Decode(&_toGlasses)
+	log.Printf(_toGlasses.Device)
+	sendToArduino(_toGlasses.Device)
+}
+
+func getTest(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Headers", "*")
+
+	json.NewEncoder(w).Encode(testElement)
+}
+
+func sendToArduino(str string) {
+	options := serial.OpenOptions{
+		PortName: "/dev/cu.usbserial-1420",
+		BaudRate: 9600,
+		DataBits: 8,
+		StopBits: 1,
+		MinimumReadSize: 4,
+	}
+
+	// Open the port.
+	port, err := serial.Open(options)
+	if err != nil {
+		log.Fatalf("serial.Open: %v", err)
+	}
+
+	time.Sleep(8*time.Second)
+
+	// Make sure to close it later.
+	defer port.Close()
+
+	b := []byte(str + "\n")
+	port.Write(b)
+
+	time.Sleep(1*time.Second)
+
+
+	if str == "weather" {
+		for _, item := range StandartDevices.DeviceList {
+			if item.ID == "weather-station" {
+				var device Devices.WeatherInfo
+				strJson, _ := json.Marshal(item.Additional)
+				json.Unmarshal([]byte(strJson), &device)
+				fmt.Println(device.Temperature)
+				b := []byte(fmt.Sprintf("%d", device.Temperature) + "\n")
+				port.Write(b)
+			}
+		}
+	}
+	if str == "greenhouse" {
+		for _, item := range StandartDevices.DeviceList {
+			if item.ID == "weather-station" {
+				var device Devices.GreenhouseInfo
+				strJson, _ := json.Marshal(item.Additional)
+				json.Unmarshal([]byte(strJson), &device)
+				b := []byte(fmt.Sprintf("%d", device.Temperature) + "\n")
+				port.Write(b)
+
+				time.Sleep(2*time.Second)
+				b = []byte(fmt.Sprintf("%d", device.AirHumidity) + "\n")
+				port.Write(b)
+			}
+		}
+	}
+	time.Sleep(2*time.Second)
+
+}
+
+
 func main() {
 
 	StandartDevices.CreateDeviceList()
@@ -157,6 +274,10 @@ func main() {
 
 	r.HandleFunc("/api/register", register).Methods("POST", "OPTIONS")
 	r.HandleFunc("/api/login", login).Methods("POST", "OPTIONS")
+
+	r.HandleFunc("/api/test/{k}/{hum}", test).Methods("POST", "OPTIONS")
+	r.HandleFunc("/api/get-test", getTest).Methods("POST", "OPTIONS")
+	r.HandleFunc("/api/to-glasses", toGlasses).Methods("POST", "OPTIONS")
 
 	log.Fatal(http.ListenAndServe(":8920", r))
 }
