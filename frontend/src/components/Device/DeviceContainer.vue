@@ -21,7 +21,10 @@ export default {
     }
   },
   async created() {
-    this.devices = await this.getDevices()
+    let dataDevices = await this.getDevices()
+    let newData = Object.values(dataDevices.devices)
+    console.log(newData)
+    this.devices = newData
   },
   components: {
     Device,

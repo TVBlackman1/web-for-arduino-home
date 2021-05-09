@@ -1,14 +1,17 @@
 <template>
   <div class="center">
     <p>-- ЛОГИН --</p>
-    <input type="text" placeholder="логин" v-model="accountInLogin.login">
+    <input type="text" placeholder="логин" v-model="accountInLogin.name">
     <input type="password" placeholder="пароль" v-model="accountInLogin.password">
     <button @click="loginAccount">Войти</button>
 
     <p>-- РЕГИСТРАЦИЯ --</p>
-    <input type="text" placeholder="логин" v-model="accountInReg.login">
+    <input type="text" placeholder="логин" v-model="accountInReg.name">
     <input type="password" placeholder="пароль" v-model="accountInReg.password">
     <button @click="registerAccount">Зарегистрироваться</button>
+    <div v-if="text.length !== 0" class="mini-text">{{text}}</div>
+
+
   </div>
 </template>
 
@@ -21,12 +24,13 @@ export default {
   data() {
     return {
       isLog1: false,
+      text: "",
       accountInLogin: {
-        login: "",
+        name: "",
         password: ""
       },
       accountInReg: {
-        login: "",
+        name: "",
         password: ""
       }
     }
@@ -41,12 +45,13 @@ export default {
       const res = await this.register(this.accountInReg)
 
       console.log(res)
+      this.text = res.res
     },
     async loginAccount() {
       let login = this.accountInLogin
       const res = await this.login(login)
       if (res.res === "OK") {
-        this.loginInFrontend(login.login)
+        this.loginInFrontend(login.name)
         this.redirectToProfile()
       }
       this.isLog1 = this.isLog()
@@ -112,6 +117,13 @@ export default {
 .center button:hover {
   cursor: pointer;
   background-color: #f3ff0a;
+}
 
+.mini-text {
+  font-size: 18px;
+  background-color: #2c3e50;
+  color: #b9f5b9;
+  padding: 0.5em;
+  border-radius: 20px;
 }
 </style>

@@ -6,6 +6,7 @@ import Devices from './components/Device/Devices'
 import DevicePage from './components/Device/DevicePage'
 import LoginZone from "./components/Login/LoginZone";
 import Profile from "./components/Login/Profile";
+import News from "./components/News/News";
 
 
 const routes = [
@@ -32,7 +33,7 @@ const routes = [
     {
         path: "/news",
         name: "news",
-        component: Devices
+        component: News
     },
 ]
 
