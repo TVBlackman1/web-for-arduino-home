@@ -5,6 +5,7 @@
 <script>
 import MicrophoneHelpSVG from "../../assets/svg/micro-help-24.svg";
 import MicrophoneHelpSVGEnabled from "../../assets/svg/micro-help-enabled-24.svg";
+import mainEmitter from "../../emitters/mainEmitter";
 
 export default {
   name: "MicrophoneHelpButton",
@@ -26,7 +27,7 @@ export default {
   },
   methods: {
     toggleSection() {
-
+      mainEmitter.$emit('toggle-help-menu')
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="help-section">
+  <div class="help-section" :class="classNames">
     <header>Помощь</header>
     <ul>
       <li class="point">Курятник</li>
@@ -12,8 +12,25 @@
 </template>
 
 <script>
+import mainEmitter from "../../emitters/mainEmitter";
+
 export default {
-  name: "MicrophoneHelpSection"
+  name: "MicrophoneHelpSection",
+  data() {
+    return {
+      classNames: {
+        hidden: true
+      }
+    }
+  },
+  created() {
+    mainEmitter.$on('toggle-help-menu', this.toggle)
+  },
+  methods: {
+    toggle() {
+      this.classNames.hidden = !this.classNames.hidden
+    }
+  }
 }
 </script>
 
@@ -31,6 +48,10 @@ export default {
   -webkit-box-shadow: 2px 2px 6px 1px rgba(0,0,0,0.45);
   box-shadow: 2px 2px 10px 1px rgba(0,0,0,0.45);
   padding: 1em 0.4em;
+}
+
+.help-section.hidden {
+  display: none;
 }
 
 header {
