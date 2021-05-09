@@ -1,5 +1,5 @@
 <template>
-  <div class="micro-image bottom-fixed" :style="styleObject" />
+  <div class="micro-image bottom-fixed" :style="styleObject" @click="toggleSection"/>
 </template>
 
 <script>
@@ -22,6 +22,11 @@ export default {
         '--background-image': `url(${this.MicrophoneHelpSVG})`,
         '--background-image-hover': `url(${this.MicrophoneHelpSVGEnabled})`
       }
+    }
+  },
+  methods: {
+    toggleSection() {
+
     }
   }
 }

@@ -1,6 +1,7 @@
 <template>
 
   <site-header/>
+  <microphone-help-section />
   <router-view/>
   <microphone-section/>
   <device-pop-menu/>
@@ -10,10 +11,12 @@
 import MicrophoneSection from "./components/MicrophoneSection/MicrophoneSection";
 import SiteHeader from "./components/SiteHeader";
 import DevicePopMenu from "./components/Device/DevicePopMenu";
+import MicrophoneHelpSection from "./components/MicrophoneSection/MicrophoneHelpSection";
 
 export default {
   name: 'App',
   components: {
+    MicrophoneHelpSection,
     SiteHeader,
     MicrophoneSection,
     DevicePopMenu
