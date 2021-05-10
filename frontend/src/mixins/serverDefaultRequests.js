@@ -3,7 +3,7 @@ import serverHandler from "./serverHandler";
 export default {
     methods: {
         async getDeviceById(id) {
-            return await this.serverRequest("/api/device/" + id)
+            return (await this.serverRequest("/devices/all-devices"))["devices"][id]
         },
         async getDevices() {
             return await this.serverRequest("/devices/all-devices")

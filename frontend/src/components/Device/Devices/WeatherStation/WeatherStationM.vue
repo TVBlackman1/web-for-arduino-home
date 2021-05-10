@@ -1,8 +1,7 @@
 <template>
   <!--    <p>Some information about weather</p>-->
   <p>Температура воздуха: {{ device.additional.temperature }} °C</p>
-  <p>Влажность: {{ device.additional.air_humidity }}%</p>
-  <p>Давление: {{ device.additional.air_pressure }}мм рт ст</p>
+  <p>Влажность: {{ device.additional.humidity }}%</p>
 </template>
 
 <script>

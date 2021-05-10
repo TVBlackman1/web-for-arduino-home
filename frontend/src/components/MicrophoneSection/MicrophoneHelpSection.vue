@@ -36,6 +36,10 @@ export default {
 
 <style scoped>
 .help-section {
+  position: absolute;
+  bottom: 0;
+  right: calc(0px + 50px);
+  z-index: 1020;
   width: 460px;
   height: 220px;
   overflow-y: auto;
@@ -78,7 +82,8 @@ header {
 .point:hover {
   cursor: pointer;
   color: #2c3e50;
-  font-size: 22px;
+  /*font-size: 22px;*/
+  margin-left: 7px;
 }
 
 .point:hover:before {

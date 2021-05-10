@@ -22,7 +22,7 @@
 
         <p>Влажность:</p>
         <div class="temperature">
-            {{ deviceData.additional.air_humidity }}%
+            {{ deviceData.additional.humidity }}%
         </div>
 
         <div class="more">
@@ -53,21 +53,21 @@
             }
         },
         created() {
-            setTimeout(() => {
-                this.deviceData.additional.temperature = 12
-            },  3000)
-            setTimeout(() => {
-                this.deviceData.additional.air_pressure = 768
-            },  3000)
-            setTimeout(() => {
-                this.deviceData.additional.temperature = 8
-                if(this.deviceData.additional.temperature < 10) {
-                    this.classNames = "dang"
-                }
-            },  6000)
-            setTimeout(() => {
-                this.deviceData.additional.air_pressure = 771
-            },  6000)
+            // setTimeout(() => {
+            //     this.deviceData.additional.temperature = 12
+            // },  3000)
+            // setTimeout(() => {
+            //     this.deviceData.additional.air_pressure = 768
+            // },  3000)
+            // setTimeout(() => {
+            //     this.deviceData.additional.temperature = 8
+            //     if(this.deviceData.additional.temperature < 10) {
+            //         this.classNames = "dang"
+            //     }
+            // },  6000)
+            // setTimeout(() => {
+            //     this.deviceData.additional.air_pressure = 771
+            // },  6000)
         }
     }
 </script>
