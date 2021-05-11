@@ -1,11 +1,11 @@
 <template>
   <div class="mode-section">
     <ul class="modes">
-      <li class="mode">Нормальный</li>
-      <li class="mode">Засуха</li>
-      <li class="mode">Холода</li>
-      <li class="mode">Свой режим 1</li>
-      <li class="mode">Свой режим 2</li>
+      <li class="mode" :class="{'picked' :picked_index === 1}" @click="onclick(1)">Нормальный</li>
+      <li class="mode" :class="{'picked' :picked_index === 2}" @click="onclick(2)">Засуха</li>
+      <li class="mode" :class="{'picked' :picked_index === 3}" @click="onclick(3)">Холода</li>
+      <li class="mode" :class="{'picked' :picked_index === 4}" @click="onclick(4)">Свой режим 1</li>
+      <li class="mode" :class="{'picked' :picked_index === 5}" @click="onclick(5)">Свой режим 2</li>
     </ul>
     <footer>
       <div class="add btn"></div>
@@ -16,7 +16,17 @@
 
 <script>
 export default {
-  name: "ModeSection"
+  name: "ModeSection",
+  data() {
+    return {
+      picked_index: 1,
+    }
+  },
+  methods: {
+    onclick(ind) {
+      this.picked_index = ind
+    }
+  }
 }
 </script>
 
@@ -28,12 +38,22 @@ export default {
 }
 
 .modes {
-  font-size: 26px;
-  padding: 0.1em 0.3em;
+  font-size: 20px;
+  padding: 0.18em 0.3em;
 }
 
 .mode {
   padding: 0.2em 0.1em;
+  transition: 0.24s;
+}
+
+.mode:hover {
+  cursor: pointer;
+  background-color: #c5f3df;
+}
+
+.picked {
+  background-color: #7cefbe;
 }
 
 footer {

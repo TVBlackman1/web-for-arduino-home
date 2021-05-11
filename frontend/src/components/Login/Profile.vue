@@ -1,30 +1,43 @@
 <template v-if="login===login">
-  <div class="in">Вы зашли в аккаунт под именем {{login}}</div>
-  <div class="in">Пока на этой странице нет контента, но он обязательно появится по мере развития!</div>
+  <div class="in">Вы зашли в аккаунт под именем {{ login }}</div>
   <button class="btnOut" @click="logout">Выйти</button>
-  <hr />
-<!--  <div class="account">-->
-<!--    <div class="left-part">-->
-<!--      <div class="profile-image"></div>-->
-<!--    </div>-->
-<!--    <div class="center"></div>-->
-<!--    <div class="right-part">-->
-<!--      <friend-list />-->
-<!--    </div>-->
-<!--  </div>-->
+  <hr/>
+  <!--  <div class="account">-->
+  <!--    <div class="left-part">-->
+  <!--      <div class="profile-image"></div>-->
+  <!--    </div>-->
+  <!--    <div class="center"></div>-->
+  <!--    <div class="right-part">-->
+  <!--      <friend-list />-->
+  <!--    </div>-->
+  <!--  </div>-->
 
   <div class="account">
     <div class="title-section">Профиль</div>
     <div class="title-section">Режимы работы</div>
-    <div class="title-section">Настроить доступ</div>
+    <div class="title-section">Состояние системы</div>
+    <div class="title-section">Умные очки</div>
     <div class="profile-section sect">
-      <div class="nick">tvblackman1</div>
+      <div class="nick">{{ login }}</div>
     </div>
     <div class="mode-section sect">
-      <mode-section />
+      <mode-section/>
     </div>
     <div class="access-section sect">
-      <friend-list />
+      <!--      <friend-list />-->
+      <ul class="system-state-ul">
+        <li class="system-state">Подключено устройств: <p class="state-value">4</p></li>
+        <li class="system-state">Работает устройств: <p class="state-value">4</p></li>
+        <li class="system-state">Сбой в подключении: <p class="state-value">0</p></li>
+      </ul>
+
+      <div class="verdict pos">Всё работает исправно</div>
+<!--      <div class="verdict neg">Ошибка в подключении</div>-->
+    </div>
+    <div class="sect glasses">
+      <div class="center pos">
+        Подключены
+      </div>
     </div>
   </div>
 
@@ -32,40 +45,40 @@
 </template>
 
 <script>
-    import loginHandler from "../../mixins/loginHandler";
-    import ModeSection from "./ModeSection";
-    import FriendList from "./friend-list";
-    export default {
-        name: "Profile",
-      components: {FriendList, ModeSection},
-      data() {
-            return {
-                login: ""
-            }
-        },
-        created() {
-            if(this.isLogInFrontend()) {
-                this.login = this.getLastLoginInFrontend()
-            }
-        },
-        methods: {
-            logout() {
-                this.logoutInFrontend()
-                this.redirectToReg()
-            },
-            redirectToReg() {
-                this.$router.push('register')
-            }
-        },
-        mixins: [loginHandler]
+import loginHandler from "../../mixins/loginHandler";
+import ModeSection from "./ModeSection";
+
+export default {
+  name: "Profile",
+  components: {ModeSection},
+  data() {
+    return {
+      login: ""
     }
+  },
+  created() {
+    if (this.isLogInFrontend()) {
+      this.login = this.getLastLoginInFrontend()
+    }
+  },
+  methods: {
+    logout() {
+      this.logoutInFrontend()
+      this.redirectToReg()
+    },
+    redirectToReg() {
+      this.$router.push('register')
+    }
+  },
+  mixins: [loginHandler]
+}
 </script>
 
 <style scoped>
 
 .account {
   display: grid;
-  grid-template-columns: 300px 300px 300px;
+  grid-template-columns: 300px 300px 300px 300px;
   grid-column-gap: 100px;
   margin: 1em;
 }
@@ -99,7 +112,12 @@
 /*}*/
 
 .in {
+  margin: 1em;
   font-size: 20px;
+}
+
+div.in {
+  margin-top: 5.2em;
 }
 
 .btnOut {
@@ -127,6 +145,47 @@
 
 .nick {
   font-size: 20px;
+}
+
+.system-state-ul {
+  margin: 0.4em 1.2em;
+  text-align: left;
+  font-size: 20px;
+}
+
+.system-state {
+  /*text-align: left;*/
+  font-size: 20px;
+  padding: 0.18em 0;
+}
+
+.state-value {
+  display: inline-block;
+  font-weight: 600;
+}
+
+.verdict {
+  margin: 2em;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.pos {
+  color: #40b883;
+}
+
+.neg {
+  color: #b84040;
+}
+
+.center {
+  font-size: 24px;
+}
+
+.glasses {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 </style>
