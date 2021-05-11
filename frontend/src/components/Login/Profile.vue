@@ -18,7 +18,13 @@
     <div class="title-section">Состояние системы</div>
     <div class="title-section">Умные очки</div>
     <div class="profile-section sect">
-      <div class="nick">{{ login }}</div>
+      <div class="nick">
+        <div class="profile-image"></div>
+        <div class="name">{{login}}<div class="edit btn"></div></div>
+        <footer>
+          <div class="change-pass">Сменить пароль</div>
+        </footer>
+      </div>
     </div>
     <div class="mode-section sect">
       <mode-section/>
@@ -91,6 +97,94 @@ export default {
 
 .sect {
   border-left: 1px solid #2c3e50;
+}
+
+.profile-section {
+  position: relative;
+}
+
+.profile-image {
+  margin: 1em;
+  border-radius: 6px;
+  border: 1px solid #767676;
+  width: 120px;
+  height: 120px;
+  /*background-color: #8998d7;*/
+
+  background-position: center;
+  background-size: cover;
+  background-origin: content-box;
+  background-repeat: repeat;
+
+  background-image: url("../../assets/profile.png");
+}
+
+.change-pass {
+  margin-top: 0.4em;
+  margin-left: 1em;
+  transition: 0.24s;
+  -webkit-box-shadow: 2px 2px 6px 1px rgba(0,0,0,0.45);
+  box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.45);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.2em;
+  background-color: white;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+
+.change-pass:hover {
+  cursor: pointer;
+  color: #2c3e50;
+  font-size: 1.02em;
+  background-color: #f3f3f3;
+}
+
+.name {
+  text-align: left;
+  margin-left: 2.4em;
+}
+
+.btn {
+  display: inline-block;
+  margin-left: 0em;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 20px;
+  width: 30px;
+  transition: 0.24s;
+  /*-webkit-box-shadow: 2px 2px 6px 1px rgba(0,0,0,0.45);*/
+  /*box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.45);*/
+  border-radius: 6px;
+  opacity: 0.4;
+}
+
+.btn:hover {
+  background-color: #dddfe7;
+  cursor: pointer;
+  opacity: 1;
+  -webkit-box-shadow: 2px 2px 6px 1px rgba(0,0,0,0.45);
+  box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.45);
+}
+
+.edit {
+  background-image: url("../../assets/svg/edit_black_24dp.svg");
 }
 
 /*.account {
