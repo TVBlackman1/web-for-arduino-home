@@ -2,8 +2,8 @@
 <!--    <p>Температура воздуха: {{ device.additional.temperature }} °C</p>-->
 <!--    <p>Давление: {{ device.additional.air_pressure }}мм рт ст</p>-->
     <div class="content">
-        <p>Текущая температура воздуха:</p>
-        <div :class="'temperature ' + classNames" :style="styles">
+        <p class="category">Текущая температура воздуха:</p>
+        <div :class="'val ' + classNames" :style="styles">
             {{ deviceData.additional.temperature }}°C
         </div>
 
@@ -20,8 +20,8 @@
             </p>
         </div>
 
-        <p>Влажность:</p>
-        <div class="temperature">
+        <p class="category">Влажность:</p>
+        <div class="val">
             {{ deviceData.additional.humidity }}%
         </div>
 
@@ -73,32 +73,5 @@
 </script>
 
 <style scoped>
-    body {
-
-    }
-    .content {
-        text-align: justify;
-        font-size: 1.2em;
-    }
-
-    .temperature {
-        font-size: 3.2em;
-        transition: 0.24s;
-    }
-
-    .dang {
-        color: var(--colorDang);
-    }
-
-    .more {
-        margin-bottom: 3em;
-    }
-
-    .more header {
-        font-weight: 700;
-    }
-
-    .more p {
-        margin: 0.1em 0.3em;
-    }
+@import "../../../../css/pop-menu-style.css";
 </style>

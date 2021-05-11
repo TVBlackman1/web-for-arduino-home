@@ -1,6 +1,6 @@
 <template>
     <div class="content">
-        <p>Автопоилка: {{getAutoWateringValue()}}</p>
+        <p class="category">Автопоилка: {{getAutoWateringValue()}}</p>
 
         <div class="more">
             <header>Подробности:</header>
@@ -38,19 +38,5 @@
 </script>
 
 <style scoped>
-    .content {
-        text-align: justify;
-    }
-
-    .more {
-        margin-bottom: 3em;
-    }
-
-    .more header {
-        font-weight: 700;
-    }
-
-    .more p {
-        margin: 0.1em 0.3em;
-    }
+@import "../../../../css/pop-menu-style.css";
 </style>

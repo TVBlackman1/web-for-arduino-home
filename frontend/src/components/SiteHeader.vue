@@ -1,9 +1,9 @@
 <template>
-  <header>
+  <header @click="getPath">
     <ul>
-      <li><router-link :to="'/'" @click="e=>e.stopPropagation()"><p>Моя дача</p></router-link></li>
-      <li><router-link :to="'/news'" @click="e=>e.stopPropagation()"><p>Новости</p></router-link></li>
-      <li><router-link :to="'/register'" @click="e=>e.stopPropagation()"><p>{{accountLinkText}}</p></router-link></li>
+      <li :class="{picked:getPath()==='/'}"><router-link :to="'/'" @click="e=>e.stopPropagation()"><p>Моя дача</p></router-link></li>
+      <li :class="{picked:getPath()==='/news'}"><router-link :to="'/news'" @click="e=>e.stopPropagation()"><p>Новости</p></router-link></li>
+      <li :class="{picked:getPath()==='/profile'}"><router-link :to="'/register'" @click="e=>e.stopPropagation()"><p>{{accountLinkText}}</p></router-link></li>
     </ul>
   </header>
 </template>
@@ -16,7 +16,8 @@ export default {
   name: "SiteHeader",
   data() {
     return {
-      accountLinkText: "Войти"
+      accountLinkText: "Войти",
+      picked_index: 1
     }
   },
   created() {
@@ -27,6 +28,10 @@ export default {
     mainEmitter.$on('logout', this.setAccountLinkLogout)
   },
   methods: {
+    getPath() {
+      return this.$route.path
+    },
+
     setAccountLinkLogin(login) {
       this.accountLinkText = login
     },
@@ -68,6 +73,10 @@ export default {
 
   header li:hover {
     color: #ffffff;
+    text-decoration: underline;
+  }
+
+  header li.picked {
     text-decoration: underline;
   }
 </style>

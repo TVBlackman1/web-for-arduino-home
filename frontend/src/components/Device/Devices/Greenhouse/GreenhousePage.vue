@@ -1,7 +1,7 @@
 <template>
     <div class="content">
-        <p>Текущая температура воздуха:</p>
-        <div class="temperature">
+        <p class="category">Текущая температура воздуха:</p>
+        <div class="val">
             {{ device.additional.temperature }}°C
         </div>
 
@@ -18,8 +18,8 @@
             </p>
         </div>
 
-        <p>Влажность воздуха:</p>
-        <div class="temperature">
+        <p class="category">Влажность воздуха:</p>
+        <div class="val">
             {{ device.additional.air_humidity }}%
         </div>
 
@@ -32,8 +32,8 @@
                 когда центральное отопление отключено, нормальной влажностью в квартире считают 30-60% при допустимом максимуме 65%            </p>
         </div>
 
-        <p>Влажность почвы:</p>
-        <div class="temperature">
+        <p class="category">Влажность почвы:</p>
+        <div class="val">
             {{ device.additional.soil_moisture }}%
         </div>
 
@@ -59,23 +59,5 @@
 </script>
 
 <style scoped>
-    .content {
-        text-align: justify;
-    }
-
-    .temperature {
-        font-size: 3.2em;
-    }
-
-    .more {
-        margin-bottom: 3em;
-    }
-
-    .more header {
-        font-weight: 700;
-    }
-
-    .more p {
-        margin: 0.1em 0.3em;
-    }
+@import "../../../../css/pop-menu-style.css";
 </style>

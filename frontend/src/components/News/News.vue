@@ -53,18 +53,22 @@ export default {
 
 .news .title {
   border-radius: 10px 10px 0 0;
-  font-size: 26px;
+  font-size: 21px;
   padding: 0.3em;
   width: 100%;
-  background-color: #40b883;
-  color: white;
+  background-color: #8998d7;
+  color: #f6f6f6;
   box-sizing: border-box;
 }
 
 .news .content {
+  /*font-family: "Arial Narrow";*/
   text-align: justify;
-  font-size: 20px;
-  padding: 0.6em;
+  font-size: 16px;
+  line-height: 1.6;
+  /*padding: 1.6em;*/
+  padding: 1.6em 2.2em;
+  color: #2c3e50;
   width: 100%;
   box-sizing: border-box;
 }
